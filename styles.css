@@ -572,16 +572,19 @@ footer.site-footer {
     opacity: 1;
   }
 
-  24.5% {
-    opacity: 0;
-  }
 
   25% {
     transform: translateX(130vw) scale(1); /* drive off right */
+    opacity: 0;
+  }
+
+  30% {
+    opacity: 0;
   }
 
   35% {
     transform: translateX(-150vw) scale(1); /* instantly teleport to left */
+    opacity: 0;
   }
 
   74.5% {
