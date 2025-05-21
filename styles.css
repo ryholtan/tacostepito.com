@@ -516,7 +516,7 @@ footer.site-footer {
   transform: translateY(-50%);
 }
 
-.logo-car.logo-car.animate-wheels {
+.logo-car.animate-wheels {
   animation: driveCartoon 12s ease-in-out;
 }
 
@@ -569,21 +569,26 @@ footer.site-footer {
 
   20% {
     transform: translateX(40vw) scale(0.9);
+    opacity: 1;
+  }
+
+  24.5% {
+    opacity: 0;
   }
 
   25% {
     transform: translateX(130vw) scale(1); /* drive off right */
   }
 
-  30% {
-    transform: translate(0) scale(1);
-  }
-
   35% {
-    transform: translateX(-130vw) scale(1); /* instantly teleport to left */
+    transform: translateX(-150vw) scale(1); /* instantly teleport to left */
   }
 
-  40% {
+  74.5% {
+    opacity: 1;
+  }
+
+  75% {
     transform: translateX(0) scale(1); /* drive back to center */
   }
 

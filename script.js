@@ -1,72 +1,69 @@
-window.addEventListener('DOMContentLoaded', () => {
+const car = document.querySelector('.logo-car');
 
+window.addEventListener('DOMContentLoaded', () => {
   document.getElementById('hamburger').addEventListener('click', () => {
     document.getElementById('nav-links').classList.toggle('active');
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
-
 });
+
+let resizeTimeout;
+let driveInProgress = false;
+
+
+
 
 
 window.addEventListener('load', () => {
-
-
-  const car = document.querySelector('.logo-car');
-  let driveInterval;
-  let resizeTimeout;
-
-  // Dynamically calculate the duration of the animation based on screen width
   function getDriveTime() {
     return Math.round(window.innerWidth * 2.37 + 3176);
   }
 
-  // Start one full drive cycle
   function startDriveCycle() {
     const duration = getDriveTime();
-    car.classList.remove('animate-wheels');
-    void car.offsetWidth; // force reflow
+    driveInProgress = true;
     car.classList.add('animate-wheels');
 
-      // HIDE just after drive off (~25%)
-  setTimeout(() => {
-    car.classList.add('invisible');
-  }, duration * 0.45);
+    // setTimeout(() => {
+    //   car.classList.add('invisible');
+    // }, duration * 0.45);
 
-  // SHOW again before return begins (~30–35%)
-  setTimeout(() => {
-    car.classList.remove('invisible');
-  }, duration * 0.60);
+    // setTimeout(() => {
+    //   car.classList.remove('invisible');
+    // }, duration * 0.75);
 
-    // Remove class after duration so it can be re-triggered
-    setTimeout(() => {
+  }
+
+  car.addEventListener('animationend', (e) => {
+    if (e.animationName === 'driveCartoon') {
       car.classList.remove('animate-wheels');
-    }, duration);
-  }
+      if (driveInProgress) {
+        driveInProgress = false;
+        // add optional pause between loops here
+        setTimeout(startDriveCycle, 5000); // 400ms delay between cycles
+      }
+    }
+  });
 
-  // Setup and start the repeating interval
-  function setupDriveInterval() {
-    clearInterval(driveInterval); // prevent duplicates
-    driveInterval = setInterval(startDriveCycle, 12000);
-  }
-
-  // Handle resizes gracefully
   function handleResize() {
     document.body.classList.add('no-animation');
     car.classList.remove('animate-wheels');
     clearTimeout(resizeTimeout);
 
     resizeTimeout = setTimeout(() => {
-      // Give the layout some time to finish reflowing
       document.body.classList.remove('no-animation');
-      startDriveCycle();
-      setupDriveInterval();
+      startDriveCycle(); // restart loop properly
     }, 500);
   }
+  window.addEventListener('resize', handleResize);
+  startDriveCycle(); // initial launch
+});
 
-  startDriveCycle();        // start first cycle once everything is ready
-  setupDriveInterval();     // begin loop
-  window.addEventListener('resize', handleResize); // add resize handling
+
+
+
+// add resize handling
 
   // const car = document.querySelector('.logo-car');
   // let resizeTimeout;
@@ -107,4 +104,3 @@ window.addEventListener('load', () => {
 
   // console.log(getDriveTime());
   // setInterval(startDriveCycle, getDriveTime());
-});
