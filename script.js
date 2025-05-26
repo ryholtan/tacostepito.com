@@ -6,6 +6,9 @@ window.addEventListener('DOMContentLoaded', () => {
   });
 
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  
+
 });
 
 let resizeTimeout;
@@ -16,6 +19,8 @@ let driveInProgress = false;
 
 
 window.addEventListener('load', () => {
+
+
   function getDriveTime() {
     return Math.round(window.innerWidth * 2.37 + 3176);
   }
@@ -56,7 +61,36 @@ window.addEventListener('load', () => {
       startDriveCycle(); // restart loop properly
     }, 500);
   }
-  window.addEventListener('resize', handleResize);
+
+  // let circleText;
+
+  // function updateCircleText() {
+  //   const el = document.getElementById('underTag');
+
+  //   if (window.innerWidth > 768) {
+  //     if (!circleText && el) {
+  //       circleText = new CircleType(el).radius(Math.min(window.innerWidth / 2, 300));
+  //     }
+  //     if (!circleTextUnder && underEl) {
+  //       circleTextUnder = new CircleType(underEl).radius(800);
+  //     }
+  //   } else {
+  //     if (circleText) {
+  //       circleText.destroy();
+  //       circleText = null;
+  //     }
+  //   }
+  // }
+
+  window.addEventListener('resize', () => {
+    handleResize();
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      handleResize();
+      updateCircleText();
+    }, 200);
+  });
+
   startDriveCycle(); // initial launch
 });
 

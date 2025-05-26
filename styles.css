@@ -11,6 +11,11 @@
   box-sizing: border-box;
 }
 
+html {
+  font-size: clamp(14px, 1vw + 1rem, 20px);
+}
+
+
 body.no-animation .logo-car {
   animation: none !important;
 }
@@ -154,6 +159,10 @@ nav a {
   text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
   border-bottom: 2px solid var(--primary);
   padding-bottom: 0.5rem;
+  background-color: rgba(255, 255, 255, 0.75);
+
+  padding: 10px;
+  width: 100vw;
 }
 
 .section-divider {
@@ -164,7 +173,7 @@ nav a {
 }
 
 #menu {
-  background: url('images/busMenu.png') no-repeat center center;
+  background: url('images/pileOTaco.png') no-repeat center center;
   background-size: cover;
   background-attachment: scroll;
   position: relative;
@@ -268,7 +277,7 @@ nav a {
 }
 
 .directions-grid {
-   width: 100%;
+  width: 100%;
   min-height: 100vh;
   display: flex;
   flex-wrap: wrap;
@@ -364,7 +373,13 @@ footer.site-footer {
 
 
 
+
 @media (max-width: 768px) {
+
+  html {
+  font-size: clamp(10px, 1vw + 1rem, 14px);
+  }
+
   header {
     background: url('images/menuTop.png') center center no-repeat;
     background-size: cover;
@@ -418,6 +433,15 @@ footer.site-footer {
     background-color: var(--primary);
     padding: 0;
     margin-bottom: -150px;
+  }
+
+  #underTag {
+    font-size: 2rem !important; 
+  }
+
+  .menu-pic {
+    border: solid black 10px;
+    width: 100vw !important;
   }
 }
 
@@ -600,3 +624,30 @@ footer.site-footer {
 }
 
 
+#underTag {
+  font-size: 3rem;
+  font-weight: bold;
+  color: var(--secondary);
+  text-shadow: 6px 6px 4px rgba(3, 111, 54, 0.4);
+  background: none;
+  z-index: 999;
+  width: 100%;
+}
+
+.tagline-wrapper {
+  padding: 3rem;
+  width: 75%;
+  border-radius: 12px;
+  backdrop-filter: blur(4px);
+  color: white;
+  margin-bottom: 40px;
+}
+
+
+
+
+
+.menu-pic {
+  border: solid black 10px;
+  width: 75%;
+}
